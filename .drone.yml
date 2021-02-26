@@ -15,12 +15,16 @@ pipeline:
 
 Print Secrets:
     image: quay.io/ukhomeofficedigital/kd
+
     environment:
+
     secrets:
       - DOCKER_USERNAME
       - DOCKER_PASSWORD
+      
     commands:
       - echo DOCKER_USERNAME=$$DOCKER_USERNAME
       - echo DOCKER_PASSWORD=$$DOCKER_PASSWORD
+
     when:
         event: push
