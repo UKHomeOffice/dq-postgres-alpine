@@ -13,7 +13,7 @@ pipeline:
 #     when:
 #       event: push
 
-Print Secrets:
+  Print Secrets:
     image: quay.io/ukhomeofficedigital/kd
 
     environment:
