@@ -13,12 +13,17 @@ steps:
   image: plugins/docker
   settings:
     repo: quay.io/ukhomeofficedigital/dq-postgres-alpine
-    secrets: [ docker_username, docker_password ]
     registry: quay.io
     dockerfile: Dockerfile
     force_tag: true
     tags:
       - ${DRONE_COMMIT_SHA}
       - ${DRONE_BUILD_NUMBER}
+    environment:
+      DOCKER_PASSWORD:
+        from_secret: docker_password
+      DOCKER_USERNAME:
+        from_secret: docker_username
     when:
-      event: push
+      event:
+      - push
