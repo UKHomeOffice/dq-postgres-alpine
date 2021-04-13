@@ -12,6 +12,10 @@ steps:
   pull: if-not-exists
   image: plugins/docker
   settings:
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
     repo: quay.io/ukhomeofficedigital/dq-postgres-alpine
     registry: quay.io
     dockerfile: Dockerfile
@@ -19,11 +23,6 @@ steps:
     tags:
       - ${DRONE_COMMIT_SHA}
       - ${DRONE_BUILD_NUMBER}
-    environment:
-      DOCKER_PASSWORD:
-        from_secret: docker_password
-      DOCKER_USERNAME:
-        from_secret: docker_username
     when:
       event:
       - push
