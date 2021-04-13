@@ -30,14 +30,14 @@ steps:
         exclude:
         - pull_request
 
-# - name: trivy_scan
-#   pull: if-not-exists
-#   image: quay.io/ukhomeofficedigital/trivyscanner:b82
-#   commands:
-#   - trivy --ignore-unfixed --exit-code 1 --no-progress quay.io/ukhomeofficedigital/dq-postgres-alpine:${DRONE_COMMIT_SHA}
-#   when:
-#     branch:
-#       exclude:
-#       - master
-#     event:
-#     - push
+- name: trivy_scan
+  pull: if-not-exists
+  image: quay.io/ukhomeofficedigital/trivyscanner:b82
+  commands:
+  - trivy --ignore-unfixed --exit-code 1 --no-progress quay.io/ukhomeofficedigital/dq-postgres-alpine:${DRONE_COMMIT_SHA}
+  trigger:
+    event:
+      include:
+      - push
+      exclude:
+      - pull_request
