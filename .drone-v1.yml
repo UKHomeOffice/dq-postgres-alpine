@@ -24,6 +24,9 @@ steps:
       - ${DRONE_COMMIT_SHA}
       - ${DRONE_BUILD_NUMBER}
     when:
+      branch:
+        exclude:
+        - master
       event:
       - push
 
