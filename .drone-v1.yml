@@ -11,6 +11,10 @@ steps:
   pull: if-not-exists
   image: plugins/docker
   settings:
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
     dockerfile: Dockerfile
     force_tag: true
     registry: quay.io
