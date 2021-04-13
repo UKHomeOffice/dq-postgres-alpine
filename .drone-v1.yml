@@ -24,11 +24,9 @@ steps:
       - ${DRONE_COMMIT_SHA}
       - ${DRONE_BUILD_NUMBER}
     trigger:
-      event:
-        include:
-        - push
-        exclude:
-        - pull_request
+    branch:
+      include:
+      - feature/*
 
 - name: trivy_scan
   pull: if-not-exists
@@ -36,8 +34,6 @@ steps:
   commands:
   - trivy --ignore-unfixed --exit-code 1 --no-progress quay.io/ukhomeofficedigital/dq-postgres-alpine:${DRONE_COMMIT_SHA}
   trigger:
-    event:
-      include:
-      - push
-      exclude:
-      - pull_request
+  branch:
+    include:
+    - feature/*
