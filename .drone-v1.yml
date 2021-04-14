@@ -23,6 +23,9 @@ steps:
     - ${DRONE_COMMIT_SHA}
     - ${DRONE_BUILD_NUMBER}
   when:
+    branch:
+      exclude:
+      - master
     event:
     - push
 
@@ -32,6 +35,9 @@ steps:
   commands:
   - trivy --ignore-unfixed --exit-code 1 --no-progress quay.io/ukhomeofficedigital/dq-postgres-alpine:${DRONE_COMMIT_SHA}
   when:
+    branch:
+      exclude:
+      - master
     event:
     - push
 
